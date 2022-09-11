@@ -1,5 +1,5 @@
 //: A UIKit based Playground for presenting user interface
-  
+
 import UIKit
 import PlaygroundSupport
 
@@ -15,9 +15,13 @@ class MyViewController : UIViewController {
         let whiteView = getWhiteView()
         let pinkView = getPinkView()
         
+        redView.transform = CGAffineTransform(rotationAngle: .pi/3)
         setToCenter(view: greenView, toCenterOfView: redView)
         whiteView.center = greenView.center
-        
+//
+//        setToCenter(view: greenView, toCenterOfView: redView)
+//        whiteView.center = greenView.center
+//
         self.view.addSubview(redView)
         redView.addSubview(greenView)
         redView.addSubview(whiteView)
@@ -64,35 +68,23 @@ class MyViewController : UIViewController {
         view.layer.shadowRadius = 10
         view.layer.shadowOffset = CGSize(width: 10, height: 20)
         view.layer.shadowColor = UIColor.white.cgColor
-//        view.layer.backgroundColor = UIColor.blue.cgColor
-        
+//        view.layer.backgroundColor = UIColor.red.cgColor
+//
         let layer = CALayer()
-        layer.backgroundColor = UIColor.blue.cgColor
+        layer.backgroundColor = UIColor.black.cgColor
         layer.frame = CGRect(x: 10, y: 10, width: 20, height: 20)
         layer.cornerRadius = 10
         view.layer.addSublayer(layer)
-        
-//        print(view.frame)
-//        view.transform = CGAffineTransform(rotationAngle: (.pi/4 - .pi/6))
-//        print(view.frame)
-//        view.transform = CGAffineTransform(scaleX: 1.5, y: 0.7)
+//
 //        view.transform = CGAffineTransform(translationX: 100, y: 5)
 //        view.transform = CGAffineTransform(rotationAngle: .pi/3).scaledBy(x: 2, y: 0.8).translatedBy(x: 50, y: 50)
+//        view.transform = CGAffineTransform.identity
         
         return view
     }
     
     private func setToCenter(view moveView: UIView, toCenterOfView baseView: UIView) {
-        let moveViewWidht = moveView.frame.width
-        let moveViewHight = moveView.frame.height
-        
-        let baseViewWidht = baseView.frame.width
-        let baseViewHight = baseView.frame.height
-        
-        let newXCoordinate = (baseViewWidht - moveViewWidht) / 2
-        let newYCoordinate = (baseViewHight - moveViewHight) / 2
-        
-        moveView.frame.origin = CGPoint(x: newXCoordinate, y: newYCoordinate)
+        moveView.center = CGPoint(x: baseView.bounds.midX, y: baseView.bounds.midY)
     }
 }
 // Present the view controller in the Live View window
