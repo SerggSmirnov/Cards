@@ -15,6 +15,9 @@ class MyViewController : UIViewController {
     private func createBezier(on view: UIView) {
         let shapeLayer = CAShapeLayer()
         view.layer.addSublayer(shapeLayer)
+        shapeLayer.strokeColor = UIColor.gray.cgColor
+        shapeLayer.lineWidth = 5
+        shapeLayer.path = getPath().cgPath
     }
     
     private func getPath() -> UIBezierPath {
