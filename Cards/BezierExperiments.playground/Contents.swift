@@ -17,6 +17,8 @@ class MyViewController : UIViewController {
         view.layer.addSublayer(shapeLayer)
         shapeLayer.strokeColor = UIColor.gray.cgColor
         shapeLayer.lineWidth = 5
+        shapeLayer.fillColor = UIColor.green.cgColor
+        
         shapeLayer.path = getPath().cgPath
     }
     
@@ -24,6 +26,14 @@ class MyViewController : UIViewController {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: 50, y: 50))
         path.addLine(to: CGPoint(x: 150, y: 50))
+        path.addLine(to: CGPoint(x: 150, y: 150))
+        path.close()
+        
+        path.move(to: CGPoint(x: 50, y: 70))
+        path.addLine(to: CGPoint(x: 150, y: 170))
+        path.addLine(to: CGPoint(x: 50, y: 170))
+        path.close()
+        
         return path
     }
 }
