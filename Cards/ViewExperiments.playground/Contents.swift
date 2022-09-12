@@ -19,8 +19,8 @@ class MyViewController : UIViewController {
         setToCenter(view: greenView, toCenterOfView: redView)
         whiteView.center = greenView.center
 //
-//        setToCenter(view: greenView, toCenterOfView: redView)
-//        whiteView.center = greenView.center
+//      setToCenter(view: greenView, toCenterOfView: redView)
+//      whiteView.center = greenView.center
 //
         self.view.addSubview(redView)
         redView.addSubview(greenView)
@@ -87,5 +87,7 @@ class MyViewController : UIViewController {
         moveView.center = CGPoint(x: baseView.bounds.midX, y: baseView.bounds.midY)
     }
 }
+
 // Present the view controller in the Live View window
+
 PlaygroundPage.current.liveView = MyViewController()
