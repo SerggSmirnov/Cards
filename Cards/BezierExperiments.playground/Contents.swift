@@ -23,16 +23,22 @@ class MyViewController : UIViewController {
     }
     
     private func getPath() -> UIBezierPath {
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: 50, y: 50))
-        path.addLine(to: CGPoint(x: 150, y: 50))
-        path.addLine(to: CGPoint(x: 150, y: 150))
-        path.close()
+//        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: 50, y: 50))
+//        path.addLine(to: CGPoint(x: 150, y: 50))
+//        path.addLine(to: CGPoint(x: 150, y: 150))
+//        path.close()
+//
+//        path.move(to: CGPoint(x: 50, y: 70))
+//        path.addLine(to: CGPoint(x: 150, y: 170))
+//        path.addLine(to: CGPoint(x: 50, y: 170))
+//        path.close()
         
-        path.move(to: CGPoint(x: 50, y: 70))
-        path.addLine(to: CGPoint(x: 150, y: 170))
-        path.addLine(to: CGPoint(x: 50, y: 170))
-        path.close()
+//        let rect = CGRect(x: 10, y: 10, width: 200, height: 100)
+//        let path = UIBezierPath(roundedRect: rect, cornerRadius: 15)
+        
+        let centerPoint = CGPoint(x: 200, y: 200)
+        let path = UIBezierPath(arcCenter: centerPoint, radius: 150, startAngle: .pi/5, endAngle: .pi, clockwise: true)
         
         return path
     }
