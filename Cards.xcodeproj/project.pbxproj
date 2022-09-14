@@ -58,6 +58,7 @@
 		5076EB6828CB2F51000574F4 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				50A4F2F128D247DF0023AF16 /* New Group */,
 				5076EB6928CB2F51000574F4 /* AppDelegate.swift */,
 				5076EB6B28CB2F51000574F4 /* SceneDelegate.swift */,
 				5076EB6D28CB2F51000574F4 /* ViewController.swift */,
@@ -69,6 +70,13 @@
 				5076EB7E28CFADB6000574F4 /* BezierExperiments.playground */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		50A4F2F128D247DF0023AF16 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
