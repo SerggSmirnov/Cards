@@ -26,6 +26,7 @@
 		5076EB7728CB2F53000574F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5076EB7D28CB2FBA000574F4 /* ViewExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ViewExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5076EB7E28CFADB6000574F4 /* BezierExperiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BezierExperiments.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		50A4F2F228D24BF00023AF16 /* TMP.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TMP.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +59,10 @@
 		5076EB6828CB2F51000574F4 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
-				50A4F2F128D247DF0023AF16 /* Other */,
 				5076EB6D28CB2F51000574F4 /* ViewController.swift */,
 				5076EB6F28CB2F51000574F4 /* Main.storyboard */,
 				5076EB7428CB2F53000574F4 /* LaunchScreen.storyboard */,
+				50A4F2F128D247DF0023AF16 /* Other */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -69,12 +70,13 @@
 		50A4F2F128D247DF0023AF16 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				5076EB7728CB2F53000574F4 /* Info.plist */,
 				5076EB6928CB2F51000574F4 /* AppDelegate.swift */,
 				5076EB6B28CB2F51000574F4 /* SceneDelegate.swift */,
 				5076EB7228CB2F53000574F4 /* Assets.xcassets */,
 				5076EB7D28CB2FBA000574F4 /* ViewExperiments.playground */,
 				5076EB7E28CFADB6000574F4 /* BezierExperiments.playground */,
-				5076EB7728CB2F53000574F4 /* Info.plist */,
+				50A4F2F228D24BF00023AF16 /* TMP.playground */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -301,7 +303,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8TS7WLVSBU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Cards/Info.plist;
+				INFOPLIST_FILE = Cards/Other/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,7 +332,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8TS7WLVSBU;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Cards/Info.plist;
+				INFOPLIST_FILE = Cards/Other/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
