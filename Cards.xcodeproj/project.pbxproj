@@ -65,7 +65,6 @@
 				5076EB6F28CB2F51000574F4 /* Main.storyboard */,
 				5076EB7228CB2F53000574F4 /* Assets.xcassets */,
 				5076EB7428CB2F53000574F4 /* LaunchScreen.storyboard */,
-				5076EB7728CB2F53000574F4 /* Info.plist */,
 				5076EB7D28CB2FBA000574F4 /* ViewExperiments.playground */,
 				5076EB7E28CFADB6000574F4 /* BezierExperiments.playground */,
 			);
@@ -75,6 +74,7 @@
 		50A4F2F128D247DF0023AF16 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
+				5076EB7728CB2F53000574F4 /* Info.plist */,
 			);
 			path = "New Group";
 			sourceTree = "<group>";
