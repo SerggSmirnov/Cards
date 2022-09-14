@@ -9,7 +9,7 @@ class MyViewController : UIViewController {
         view.backgroundColor = .white
         self.view = view
         
-        view.layer.addSublayer(SquareShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
+        view.layer.addSublayer(CrossShape(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
     }
 }
 
@@ -54,6 +54,26 @@ class SquareShape: CAShapeLayer, ShapeLayerProtocol {
         path.close()
         self.path = path.cgPath
         self.fillColor = fillColor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class CrossShape: CAShapeLayer, ShapeLayerProtocol {
+    required init(size: CGSize, fillColor: CGColor) {
+        super.init()
+        
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: size.width, y: size.height))
+        path.move(to: CGPoint(x: size.width, y: 0))
+        path.addLine(to: CGPoint(x: 0, y: size.height))
+        
+        self.path = path.cgPath
+        self.strokeColor = fillColor
+        self.lineWidth = 5
     }
     
     required init?(coder: NSCoder) {
