@@ -149,5 +149,19 @@ class BackSideLine: CAShapeLayer, ShapeLayerProtocol {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+class CardView<ShapeType: ShapeLayerProtocol>: UIView {
+    var color: UIColor!
+    
+    init(frame: CGRect, color: UIColor) {
+        super.init(frame: frame)
+        self.color = color
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 // Present the view controller in the Live View window
 PlaygroundPage.current.liveView = MyViewController()
