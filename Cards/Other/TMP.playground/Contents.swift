@@ -150,7 +150,15 @@ class BackSideLine: CAShapeLayer, ShapeLayerProtocol {
     }
 }
 
-class CardView<ShapeType: ShapeLayerProtocol>: UIView {
+class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
+    var isFlipped: Bool = false
+    
+    var flipCompletationHandler: ((FlippableView) -> Void)?
+    
+    func flip() {
+        
+    }
+    
     var color: UIColor!
     
     init(frame: CGRect, color: UIColor) {
@@ -161,6 +169,12 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+protocol FlippableView: UIView {
+    var isFlipped: Bool { get set }
+    var flipCompletationHandler: ((FlippableView) -> Void)? { get set }
+    func flip()
 }
 
 // Present the view controller in the Live View window
