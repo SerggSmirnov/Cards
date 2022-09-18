@@ -1,5 +1,5 @@
 //: A UIKit based Playground for presenting user interface
-  
+
 import UIKit
 import PlaygroundSupport
 
@@ -9,7 +9,12 @@ class MyViewController : UIViewController {
         view.backgroundColor = .white
         self.view = view
         
-        view.layer.addSublayer(BackSideLine(size: CGSize(width: 200, height: 150), fillColor: UIColor.gray.cgColor))
+        let firstCardView = CardView<CircleShape>(frame: CGRect(x: 0, y: 0, width: 120, height: 150), color: .red)
+        self.view.addSubview(firstCardView)
+        
+        let secondCardView = CardView<CircleShape>(frame: CGRect(x: 200, y: 0, width: 120, height: 150), color: .red)
+        self.view.addSubview(secondCardView)
+        secondCardView.isFlipped = true
     }
 }
 
@@ -151,9 +156,15 @@ class BackSideLine: CAShapeLayer, ShapeLayerProtocol {
 }
 
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
-    var isFlipped: Bool = false
+    var isFlipped: Bool = false {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
     
     var flipCompletionHandler: ((FlippableView) -> Void)?
+    
+    var cornerRadius = 20
     
     func flip() {
         
@@ -172,6 +183,7 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         view.backgroundColor = .white
         
         let shapeView = UIView(frame: CGRect(x: margin, y: margin, width: Int(self.bounds.width)-margin*2, height: Int(self.bounds.height)-margin*2))
+        view.addSubview(shapeView)
         
         let shapeLayer = ShapeType(size: shapeView.frame.size, fillColor: color.cgColor)
         shapeView.layer.addSublayer(shapeLayer)
@@ -196,9 +208,31 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         return view
     }
     
+    private func setupBorders() {
+        self.clipsToBounds = true
+        self.layer.cornerRadius = CGFloat(cornerRadius)
+        self.layer.borderWidth = 2
+        self.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    override func draw(_ rect: CGRect) {
+        backSideView.removeFromSuperview()
+        frontSideView.removeFromSuperview()
+        
+        if isFlipped {
+            self.addSubview(backSideView)
+            self.addSubview(frontSideView)
+        } else {
+            self.addSubview(frontSideView)
+            self.addSubview(backSideView)
+        }
+    }
+    
     init(frame: CGRect, color: UIColor) {
         super.init(frame: frame)
         self.color = color
+        
+        setupBorders()
     }
     
     required init?(coder: NSCoder) {
