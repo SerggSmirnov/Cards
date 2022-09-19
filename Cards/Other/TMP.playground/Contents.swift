@@ -16,6 +16,10 @@ class MyViewController : UIViewController {
         self.view.addSubview(secondCardView)
         secondCardView.isFlipped = true
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(self.responderChain())
+    }
 }
 
 protocol ShapeLayerProtocol: CAShapeLayer {
@@ -25,6 +29,15 @@ protocol ShapeLayerProtocol: CAShapeLayer {
 extension ShapeLayerProtocol {
     init() {
         fatalError("init() cannot be used to create an instance")
+    }
+}
+
+extension UIResponder {
+    func responderChain() -> String {
+        guard let next = next else {
+            return String(describing: Self.self)
+        }
+        return String(describing: Self.self) + "-> " + next.responderChain()
     }
 }
 
@@ -156,6 +169,9 @@ class BackSideLine: CAShapeLayer, ShapeLayerProtocol {
 }
 
 class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
+    
+//    var anchorPoint: CGPoint = CGPoint(x: 0, y: 0)
+    
     var isFlipped: Bool = false {
         didSet {
             self.setNeedsDisplay()
@@ -228,6 +244,20 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        anchorPoint.x = touches.first!.location(in: window).x - frame.minX
+        anchorPoint.y = touches.first!.location(in: window).y - frame.minY
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.frame.origin.x = touches.first!.location(in: window).x - anchorPoint.x
+        self.frame.origin.y = touches.first!.location(in: window).y - anchorPoint.y
+    }
+    /*
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("touchesEnded")
+    }
+    */
     init(frame: CGRect, color: UIColor) {
         super.init(frame: frame)
         self.color = color
