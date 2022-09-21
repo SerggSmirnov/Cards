@@ -185,7 +185,11 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     var cornerRadius = 20
     
     func flip() {
-        
+        let fromView = isFlipped ? frontSideView : backSideView
+        let toView = isFlipped ? backSideView : frontSideView
+        UIView.transition(from: fromView, to: toView, duration: 0.5, options:
+        [.transitionFlipFromTop], completion: nil)
+        isFlipped = !isFlipped
     }
     
     var color: UIColor!
@@ -257,11 +261,24 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         self.frame.origin.x = touches.first!.location(in: window).x - anchorPoint.x
         self.frame.origin.y = touches.first!.location(in: window).y - anchorPoint.y
     }
-   
+   /*
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: 0.5) {
             self.frame.origin = self.startTouchPoint
+            
+            if self.transform.isIdentity {
+                self.transform = CGAffineTransform(rotationAngle: .pi)
+                print("is identity")
+            } else {
+                self.transform = .identity
+                print("else")
+            }
         }
+    }
+    */
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+       flip()
     }
     
     init(frame: CGRect, color: UIColor) {
