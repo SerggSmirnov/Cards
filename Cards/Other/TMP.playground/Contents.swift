@@ -11,10 +11,12 @@ class MyViewController : UIViewController {
         
         let firstCardView = CardView<CircleShape>(frame: CGRect(x: 0, y: 0, width: 120, height: 150), color: .red)
         self.view.addSubview(firstCardView)
+        firstCardView.flipCompletionHandler = { card in card.superview?.bringSubviewToFront(card)}
         
         let secondCardView = CardView<CircleShape>(frame: CGRect(x: 200, y: 0, width: 120, height: 150), color: .red)
         self.view.addSubview(secondCardView)
         secondCardView.isFlipped = true
+        secondCardView.flipCompletionHandler = { card in card.superview?.bringSubviewToFront(card)}
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -37,7 +39,7 @@ extension UIResponder {
         guard let next = next else {
             return String(describing: Self.self)
         }
-        return String(describing: Self.self) + "-> " + next.responderChain()
+        return String(describing: Self.self) + "->" + next.responderChain()
     }
 }
 
@@ -188,7 +190,7 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
         let fromView = isFlipped ? frontSideView : backSideView
         let toView = isFlipped ? backSideView : frontSideView
         UIView.transition(from: fromView, to: toView, duration: 0.5, options:
-        [.transitionFlipFromTop], completion: nil)
+                            [.transitionFlipFromTop], completion: { _ in self.flipCompletionHandler?(self)})
         isFlipped = !isFlipped
     }
     
@@ -285,7 +287,9 @@ class CardView<ShapeType: ShapeLayerProtocol>: UIView, FlippableView {
     */
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-       flip()
+        if self.frame.origin == startTouchPoint {
+            flip()
+        }
     }
     
     init(frame: CGRect, color: UIColor) {
