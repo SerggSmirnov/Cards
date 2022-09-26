@@ -24,6 +24,16 @@ class BoardGameController: UIViewController {
         game.generateCards()
         return game
     }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
 // MARK: UI
     
@@ -34,9 +44,10 @@ class BoardGameController: UIViewController {
         view.addSubview(boardGameView)
     }
     
-    lazy var startButtonView = getStartButton()
     
+    lazy var startButtonView = getStartButton()
     lazy var boardGameView = getBoardGameView()
+    
     
     private func getStartButton() -> UIButton {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -73,8 +84,7 @@ class BoardGameController: UIViewController {
         let windowScene = scenes.first as? UIWindowScene
         let window = windowScene?.windows.first
         let topPadding = window?.safeAreaInsets.top
-        boardView.frame.origin.y = topPadding! + startButtonView.frame.height +
-        margin
+        boardView.frame.origin.y = topPadding! + startButtonView.frame.height + margin
         
         boardView.frame.size.width = UIScreen.main.bounds.width - margin*2
         
